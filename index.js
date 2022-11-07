@@ -61,9 +61,6 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-app.use(express.static(path.join(__dirname, "client/build")))
-app.use('/', express.static(path.join(__dirname, "client/build")))
-
 async function verifyTokenAdmin(req, res, next) {
     var token = req.headers['authorization']
     var username = req.headers['username']
@@ -1164,4 +1161,9 @@ app.put("/verify", verifyToken, async (req, res) => {
     }
 });
 
-app.listen(process.env.PORT || 8000, () => console.log("Server is Running at PORT 8000"))
+app.use(express.static('client / build'));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
+let PORT = process.env.PORT || 8000
+app.listen(PORT, () => console.log(`Server is Running at PORT ${PORT}`))
