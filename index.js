@@ -1163,7 +1163,7 @@ app.put("/verify", verifyToken, async (req, res) => {
 
 app.use(express.static('client / build'));
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+    res.sendFile(path.join(__dirname + 'client/build/index.html'));
 });
 let PORT = process.env.PORT || 8000
 app.listen(PORT, () => console.log(`Server is Running at PORT ${PORT}`))
